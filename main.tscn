@@ -1,13 +1,115 @@
-[gd_scene load_steps=3 format=3 uid="uid://daork5ity0tpr"]
+[gd_scene load_steps=25 format=3 uid="uid://daork5ity0tpr"]
 
+[ext_resource type="Script" path="res://main.gd" id="1_2xe27"]
 [ext_resource type="PackedScene" uid="uid://cy3m7knwp3ca5" path="res://props/snow_globe.tscn" id="1_61ing"]
 [ext_resource type="Script" path="res://addons/goutte.camera.trackball/trackball_camera.gd" id="2_6yupn"]
+[ext_resource type="PackedScene" uid="uid://d2e1nhan1xd5n" path="res://effects/snowball_emitter.tscn" id="3_3woqm"]
+[ext_resource type="PackedScene" uid="uid://bbfbakjabwhvn" path="res://environments/night.tscn" id="3_wr2ne"]
+[ext_resource type="PackedScene" uid="uid://c8grih5xf6y3b" path="res://assets/models/bench.fbx" id="4_dole7"]
+[ext_resource type="PackedScene" uid="uid://dtb665ctncvo2" path="res://props/streetlamp.tscn" id="4_ljgas"]
+[ext_resource type="Shader" path="res://assets/shaders/snow_cover.gdshader" id="5_qtbjb"]
+[ext_resource type="PackedScene" uid="uid://x1uw6rxowp7m" path="res://props/pine_tree_tall.tscn" id="6_qsd8n"]
+[ext_resource type="Texture2D" uid="uid://cvtq6486oqe2k" path="res://assets/textures/bench/wooden_bench_d.tga" id="6_tipce"]
+[ext_resource type="Texture2D" uid="uid://c1xd550rew8tq" path="res://assets/textures/snow/Snow010A_2K-JPG_Color.jpg" id="7_0j1i0"]
+[ext_resource type="PackedScene" uid="uid://co3ln0txhymyc" path="res://props/pine_tree_med_2.tscn" id="7_3amxk"]
+[ext_resource type="Texture2D" uid="uid://dy4s6us1pelck" path="res://assets/textures/bench/wooden_bench_n.tga" id="8_deh2e"]
+[ext_resource type="PackedScene" uid="uid://degi0j4e607ku" path="res://props/pine_tree_small.tscn" id="8_x3xmc"]
+[ext_resource type="PackedScene" uid="uid://b72fl0fyiq0bg" path="res://props/pine_tree_med.tscn" id="9_cwptl"]
+[ext_resource type="Texture2D" uid="uid://cyh313ibspgou" path="res://assets/textures/snow/Snow010A_2K-JPG_NormalGL.jpg" id="9_tdyv2"]
+[ext_resource type="PackedScene" uid="uid://b8raeaaye2e7p" path="res://props/dead_tree_med.tscn" id="10_8cpy5"]
+[ext_resource type="PackedScene" uid="uid://ccdekwgi6yv57" path="res://props/dead_tree_large.tscn" id="11_f4kd4"]
+[ext_resource type="PackedScene" uid="uid://bduyx1teqfu0f" path="res://props/dead_tree_small.tscn" id="12_fjl4v"]
+[ext_resource type="PackedScene" uid="uid://dl4kpphrcyjx3" path="res://assets/models/Rock_3.gltf" id="13_xwo03"]
+[ext_resource type="PackedScene" uid="uid://bm0vpwv1to8gi" path="res://assets/models/Rock_5.gltf" id="14_lhqry"]
+[ext_resource type="PackedScene" uid="uid://t2jfcd1w8s22" path="res://assets/models/Rock_1.gltf" id="15_8snqi"]
+[ext_resource type="PackedScene" uid="uid://bbphwrd7npdae" path="res://props/snowman.tscn" id="21_gvoay"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3n115"]
+render_priority = 0
+shader = ExtResource("5_qtbjb")
+shader_parameter/offset = 0.5
+shader_parameter/fade = 0.1
+shader_parameter/uv_scale_fg = Vector3(1, 1, 1)
+shader_parameter/uv_scale_bg = Vector3(1, 1, 1)
+shader_parameter/albedo_texture_fg = ExtResource("7_0j1i0")
+shader_parameter/normal_texture_fg = ExtResource("9_tdyv2")
+shader_parameter/albedo_texture_bg = ExtResource("6_tipce")
+shader_parameter/normal_texture_bg = ExtResource("8_deh2e")
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_2xe27")
 
 [node name="SnowGlobe" parent="." instance=ExtResource("1_61ing")]
+
+[node name="SnowballEmitter" parent="SnowGlobe" instance=ExtResource("3_3woqm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.3, 0)
+snowball_impulse = 30
+
+[node name="Props" type="Node3D" parent="SnowGlobe"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
+
+[node name="streetlamp2" parent="SnowGlobe/Props" instance=ExtResource("4_ljgas")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -5.66143, -0.7)
+
+[node name="Root Scene" parent="SnowGlobe/Props" instance=ExtResource("4_dole7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -5.7, 0)
+
+[node name="Cube" parent="SnowGlobe/Props/Root Scene/RootNode" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_3n115")
+
+[node name="PineTreeTall2" parent="SnowGlobe/Props" instance=ExtResource("6_qsd8n")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -4.8, -6, 1)
+
+[node name="PineTreeTall3" parent="SnowGlobe/Props" instance=ExtResource("6_qsd8n")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -3, -6, -4)
+
+[node name="PineTreeTall" parent="SnowGlobe/Props" instance=ExtResource("6_qsd8n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -6, 2)
+
+[node name="PineTreeMed2" parent="SnowGlobe/Props" instance=ExtResource("7_3amxk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -5.5, 3.7)
+
+[node name="PineTreeMed3" parent="SnowGlobe/Props" instance=ExtResource("7_3amxk")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1, -5.5, -5)
+
+[node name="PineTreeSmall" parent="SnowGlobe/Props" instance=ExtResource("8_x3xmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -6, -3)
+
+[node name="PineTreeSmall3" parent="SnowGlobe/Props" instance=ExtResource("8_x3xmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -5.8, 1)
+
+[node name="PineTreeSmall2" parent="SnowGlobe/Props" instance=ExtResource("8_x3xmc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -5.8, 6)
+
+[node name="PineTreeMed" parent="SnowGlobe/Props" instance=ExtResource("9_cwptl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8, -5.7, 5)
+
+[node name="DeadTreeMed" parent="SnowGlobe/Props" instance=ExtResource("10_8cpy5")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -6.2, -5.5, -1.6)
+
+[node name="DeadTreeLarge" parent="SnowGlobe/Props" instance=ExtResource("11_f4kd4")]
+transform = Transform3D(-0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 5, -5.5, -3.3)
+
+[node name="DeadTreeSmall" parent="SnowGlobe/Props" instance=ExtResource("12_fjl4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -5.6, -6)
+
+[node name="Rock_32" parent="SnowGlobe/Props" instance=ExtResource("13_xwo03")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.66191, -5.69405, 0.112528)
+
+[node name="Rock_52" parent="SnowGlobe/Props" instance=ExtResource("14_lhqry")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 4, -5.8, 2.8)
+
+[node name="Rock_12" parent="SnowGlobe/Props" instance=ExtResource("15_8snqi")]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 3, -5.3, -3.8)
+
+[node name="Snowman" parent="SnowGlobe/Props" instance=ExtResource("21_gvoay")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -2, -5.8, -1)
 
 [node name="TrackballCamera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 23)
 script = ExtResource("2_6yupn")
 stabilize_horizon = true
+
+[node name="Night" parent="." instance=ExtResource("3_wr2ne")]
+
+[editable path="SnowGlobe/Props/Root Scene"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bduyx1teqfu0f"]
+
+[ext_resource type="PackedScene" uid="uid://562m8i6dwqa" path="res://assets/models/DeadTree_9.gltf" id="1_3y51v"]
+[ext_resource type="Material" uid="uid://bt43ikqmr2uo3" path="res://assets/materials/dead_tree.material" id="2_bbkc2"]
+
+[node name="DeadTreeSmall" instance=ExtResource("1_3y51v")]
+
+[node name="DeadTree_9" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_bbkc2")

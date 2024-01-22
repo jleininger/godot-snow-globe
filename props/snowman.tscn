@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbphwrd7npdae"]
+
+[ext_resource type="Texture2D" uid="uid://c1xd550rew8tq" path="res://assets/textures/snow/Snow010A_2K-JPG_Color.jpg" id="1_8y0wv"]
+[ext_resource type="Texture2D" uid="uid://cg8mcvkpymxng" path="res://assets/textures/snow/Snow010A_2K-JPG_AmbientOcclusion.jpg" id="2_bhq4o"]
+[ext_resource type="Texture2D" uid="uid://2tqdldgrc3o" path="res://assets/textures/snow/Snow010A_2K-JPG_Displacement.jpg" id="3_xio0v"]
+[ext_resource type="Texture2D" uid="uid://cyh313ibspgou" path="res://assets/textures/snow/Snow010A_2K-JPG_NormalGL.jpg" id="4_3dtm2"]
+[ext_resource type="Texture2D" uid="uid://bb82ldoplxefk" path="res://assets/textures/snow/Snow010A_2K-JPG_Roughness.jpg" id="5_jyyot"]
+[ext_resource type="Material" uid="uid://bt43ikqmr2uo3" path="res://assets/materials/dead_tree.material" id="6_wt55c"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h0n0"]
+albedo_texture = ExtResource("1_8y0wv")
+roughness_texture = ExtResource("5_jyyot")
+normal_enabled = true
+normal_texture = ExtResource("4_3dtm2")
+ao_enabled = true
+ao_texture = ExtResource("2_bhq4o")
+detail_enabled = true
+detail_mask = ExtResource("3_xio0v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dq1ki"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Snowman" type="CSGCombiner3D"]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_6h0n0")
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+radius = 0.35
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_6h0n0")
+
+[node name="CSGSphere3D3" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+radius = 0.25
+radial_segments = 24
+rings = 12
+material = SubResource("StandardMaterial3D_6h0n0")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.5, -0.866025, 0, 0.866025, 0.5, 0, 0, 0, 1, -0.4, 1.37128, 0)
+radius = 0.02
+height = 0.6
+material = ExtResource("6_wt55c")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-0.5, 0.866025, -8.74228e-08, 0.866025, 0.5, 0, 4.37114e-08, -7.57103e-08, -1, 0.4, 1.37128, 0)
+radius = 0.02
+height = 0.6
+material = ExtResource("6_wt55c")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0780832, 1.78833, 0.216221)
+radius = 0.02
+height = 0.05
+material = SubResource("StandardMaterial3D_dq1ki")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.0835138, 1.78833, 0.216221)
+radius = 0.02
+height = 0.05
+material = SubResource("StandardMaterial3D_dq1ki")

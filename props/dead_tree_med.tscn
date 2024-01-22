@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8raeaaye2e7p"]
+
+[ext_resource type="PackedScene" uid="uid://bq8508ky3wlun" path="res://assets/models/DeadTree_4.gltf" id="1_7rn6y"]
+[ext_resource type="Material" uid="uid://bt43ikqmr2uo3" path="res://assets/materials/dead_tree.material" id="2_4tg2q"]
+
+[node name="DeadTreeMed" instance=ExtResource("1_7rn6y")]
+
+[node name="DeadTree_4" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_4tg2q")

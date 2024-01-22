@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2e1nhan1xd5n"]
+
+[ext_resource type="Script" path="res://effects/snowball_emitter.gd" id="1_vl451"]
+[ext_resource type="PackedScene" uid="uid://yng01xqevswl" path="res://effects/snowball.tscn" id="2_wk5w7"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1qmd6"]
+top_radius = 8.0
+bottom_radius = 8.0
+height = 0.5
+
+[node name="SnowballEmitter" type="Node3D"]
+script = ExtResource("1_vl451")
+snowball_prefab = ExtResource("2_wk5w7")
+
+[node name="SpawnArea" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CylinderMesh_1qmd6")

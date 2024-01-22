@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://degi0j4e607ku"]
+
+[ext_resource type="PackedScene" uid="uid://w37vv5l2b13p" path="res://assets/models/PineTree_3.gltf" id="1_y38lb"]
+[ext_resource type="Material" uid="uid://c75hc748ehbr7" path="res://assets/materials/pine_bark.tres" id="2_tg8ku"]
+[ext_resource type="Material" uid="uid://d068jenu0he27" path="res://assets/materials/pine_tree_leaves.material" id="3_8ik6l"]
+
+[node name="PineTreeSmall" instance=ExtResource("1_y38lb")]
+
+[node name="PineTree_3" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_tg8ku")
+surface_material_override/1 = ExtResource("3_8ik6l")
