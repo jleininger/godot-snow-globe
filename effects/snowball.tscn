@@ -16,6 +16,7 @@ margin = 0.0
 radius = 0.1
 
 [node name="Snowball" type="RigidBody3D"]
+collision_layer = 2
 mass = 0.01
 gravity_scale = 0.15
 continuous_cd = true

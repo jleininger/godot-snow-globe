@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://daork5ity0tpr"]
+[gd_scene load_steps=27 format=3 uid="uid://daork5ity0tpr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_2xe27"]
 [ext_resource type="PackedScene" uid="uid://cy3m7knwp3ca5" path="res://props/snow_globe.tscn" id="1_61ing"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bm0vpwv1to8gi" path="res://assets/models/Rock_5.gltf" id="14_lhqry"]
 [ext_resource type="PackedScene" uid="uid://t2jfcd1w8s22" path="res://assets/models/Rock_1.gltf" id="15_8snqi"]
 [ext_resource type="PackedScene" uid="uid://bbphwrd7npdae" path="res://props/snowman.tscn" id="21_gvoay"]
+[ext_resource type="Shader" path="res://assets/shaders/tilt_shift.gdshader" id="24_03sth"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3n115"]
 render_priority = 0
@@ -36,6 +37,11 @@ shader_parameter/normal_texture_fg = ExtResource("9_tdyv2")
 shader_parameter/albedo_texture_bg = ExtResource("6_tipce")
 shader_parameter/normal_texture_bg = ExtResource("8_deh2e")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7cyt6"]
+shader = ExtResource("24_03sth")
+shader_parameter/limit = 0.3
+shader_parameter/blur = 1.46
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_2xe27")
 
@@ -43,7 +49,7 @@ script = ExtResource("1_2xe27")
 
 [node name="SnowballEmitter" parent="SnowGlobe" instance=ExtResource("3_3woqm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.3, 0)
-snowball_impulse = 30
+snowball_impulse = 35
 
 [node name="Props" type="Node3D" parent="SnowGlobe"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3, 0)
@@ -111,5 +117,13 @@ script = ExtResource("2_6yupn")
 stabilize_horizon = true
 
 [node name="Night" parent="." instance=ExtResource("3_wr2ne")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_7cyt6")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [editable path="SnowGlobe/Props/Root Scene"]

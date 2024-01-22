@@ -9,7 +9,7 @@ extends Node3D
 		
 func _input(event):
 	if event.is_action_pressed("click") and screen_point_to_ray() != null:
-		snowball_emitter.spawn_snowballs(15)
+		snowball_emitter.spawn_snowballs(20)
 		snow_globe.shake()
 		
 	if event.is_action_released("exit"):
